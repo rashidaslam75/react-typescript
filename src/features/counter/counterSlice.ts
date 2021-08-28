@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState, AppThunk } from '../../app/store';
+import { postData } from '../../store/api';
+import { RootState, AppThunk } from '../../store/store';
 import { fetchCount } from './counterAPI';
 
 export interface CounterState {
@@ -74,6 +75,7 @@ export const incrementIfOdd = (amount: number): AppThunk => (
   getState
 ) => {
   const currentValue = selectCount(getState());
+  const data= postData()
   if (currentValue % 2 === 1) {
     dispatch(incrementByAmount(amount));
   }
